@@ -1,117 +1,52 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React from 'react';
+import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
+// TODO: 시각적 추정 앱
+//  - MVP: 기준 도형에 상대적으로 도형 크기를 조절하는 UI
+//    - 결정 누르면 도형 크기를 숫자로 환산하기
+//    - 공개 누를때 숫자를 보여주기
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
+    <SafeAreaView
+      style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View
+        style={{
+          flex: 1,
+          alignSelf: 'stretch',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderWidth: 1,
+        }}>
+        {/* 기준 도형 */}
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+            width: '40%',
+            aspectRatio: 1,
+            borderRadius: Number.MAX_SAFE_INTEGER,
+            backgroundColor: 'orange',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+        {/* TODO: 도형 크기 조절 기능 - 슬라이더를 겹치거나, 도형에 PanResponder */}
+        <View
+          style={{
+            position: 'absolute',
+            width: '50%',
+            aspectRatio: 1,
+            borderRadius: Number.MAX_SAFE_INTEGER,
+            opacity: 0.4,
+            backgroundColor: 'gold',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        />
+      </View>
+      <TouchableOpacity style={{padding: 20, backgroundColor: 'lightblue'}}>
+        <Text>결정 {/* -> RN 모달이든 뭐든 화면전환 */}</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
